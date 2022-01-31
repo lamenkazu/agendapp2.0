@@ -1,0 +1,137 @@
+#page-auth{
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+
+    aside{
+        flex: 5;
+
+        background-color: #327094;
+        color: #e1eaf0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding: 120px 88px;
+
+        img{
+            max-width: 320px;
+        }
+
+        strong{
+            font: 700 24px 'Poppins', sans-serif;
+            line-height: 42px;
+            margin-top: 16px;
+        }
+
+        p{
+            font-size: 16px;
+            line-height: 32px;
+            margin-top: 16px;
+            color: #e1eaf0;
+        }
+    }
+
+    main{
+        flex: 10;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .main-content{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+            align-items: stretch;
+            text-align: center;
+
+            h1{
+                font-size: 42px;
+                margin: 24px 0 24px;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            h2{
+                font-size: 24px;
+                margin: 12px 0 12px;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            form{
+                input{
+                    margin: 2px;
+                    height: 50px;
+                    border-radius: 8px;
+                    padding: 0 16px;
+                    background-color:#FFF;
+                    border: 1px solid #324f68;
+
+                    width: 80%;
+                    align-items: stretch;
+                }
+                input::placeholder{
+                    text-align: center;
+                }
+            }
+
+            button{
+                margin-top: 16px;
+                width: 100%;
+            }
+        }
+
+    }
+
+    .separator{
+        color: #2c3450;
+        margin: 16px 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &::before{
+            content:'';
+            flex: 1;
+            height: 1px;
+            background: #2994bf;
+            margin-right: 16px;
+        }
+        &::after{
+            content:'';
+            flex: 1;
+            height: 1px;
+            background: #2994bf;
+            margin-left: 16px;
+        }
+    }
+    
+    .signInGoogle{
+        margin-top: 30px;
+        height: 50px;
+        border-radius: 8px;
+        font-weight: 500;
+        background-color:#ea4335 ;
+        color: #FFF;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+        border: 0;
+        
+        transition: all ease-out 0.2s;
+
+        img{
+            margin-right: 15px;
+        }
+
+        &:hover{
+            background-color: rgb(68, 157, 68);
+        }
+    }
+}
+

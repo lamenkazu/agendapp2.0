@@ -1,0 +1,201 @@
+.container{
+    flex: 2 ;
+    margin-left: 1rem;
+    width: min(90vw, 800);
+    text-align: center;
+    margin-left:20%;
+    
+    
+
+    .card{
+        max-width: max-content;
+        background-color: #587c9d;
+        padding: 1rem 2rem;
+        border-radius: 0.3rem;
+        margin-bottom: 2rem;
+        
+
+
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.637),
+                    0px 3px 1px -1px rgb(205, 92, 92),
+                    0px 1px 5px 0px rgba(0, 0, 0, 0.76);
+        height: max-content;
+
+        h2{
+            width: 350px;
+            font-family: 'Poppins', sans-serif;
+            color: #e1eaf0;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+    }
+
+    .item{
+        max-width: 30rem;
+        width: 700px;
+        background-color: #63a7d1aa ;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        font-family: 'Raleway';
+        
+
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.637),
+                    0px 3px 1px -1px rgb(194, 205, 92),
+                    0px 1px 5px 0px rgba(0, 0, 0, 0.76);
+     
+        
+        form{
+            margin-top: 0.5rem;
+
+            .itensForm{
+                display: flex;
+                margin-left: 10%;
+                justify-content: space-around;
+                margin-right: 15%;
+            }
+            
+                
+            input{
+                margin-bottom: 10px;
+                height: 1.5rem;
+                border-radius: 8px;
+                padding: 0 16px;
+                background-color: antiquewhite;
+                border: 1px solid #2c3450;
+                width: 222px;
+            }
+                        
+        }
+
+        .name, .mail, .tel{
+            width: fit-content;
+            margin: auto;
+        }
+
+        .id{
+            margin-top: 10px;
+            margin-right: 86%;
+            font-size: 1rem;
+            color: black;
+            
+
+            .idCliente{
+                font-size: 0.6rem;
+                margin-left: 250%;
+                background-color: rgba(0, 0, 0, 0.11);
+                border-radius: 5px;
+                padding: 5px;
+            }
+        }
+
+        .status{
+            display: inline-block;
+            margin-left: 70%;
+        }
+
+        .name{
+            
+            font-size: 2rem;
+            padding-left: 1.5rem;
+            font-family: 'Poppins';
+        }
+
+        .tel{
+            margin-bottom: 5px;
+        }
+
+
+        .mail{
+            color: #ffe7b6;
+        }
+
+        .procedimento{
+            margin-top: 10px;
+            color:#753b25;
+            margin-bottom: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            &::before{
+                content:'';
+                flex: 1;
+                height: 1px;
+                background: #2c3450;
+                margin-right: 10px;
+            }
+
+            &::after{
+                content:'';
+                flex: 1;
+                height: 1px;
+                background: #2c3450;
+                margin-left: 10px;
+            }
+        }
+
+        .prazo, .valor{
+            margin-right: 100%;
+            p{
+                width: 40vh;
+                padding-left: 15vh;
+                color: #ffe7b6;
+                margin-bottom: 10px;
+            }
+        }
+
+        
+
+        .id:hover{
+            color: pink;
+        }
+
+        .mail:hover{
+            color:gold;
+        }
+        .name:hover, .tel:hover{
+            color: gold;
+        }
+
+        
+    }
+
+    
+    .link{
+        visibility: hidden;
+        display: none;
+    }
+
+
+    .actions{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        .button{
+
+
+            img{
+                padding: 3px;
+                width: 2.1rem;
+                margin-top: 1rem;
+                margin-right: 1rem;         
+            }
+
+            img:hover{
+                background-color: rgba(250, 235, 215, 0.644);
+                border-radius: 100%;
+            }
+        }
+    }
+}
+
+#edit{
+    
+    
+    margin: auto;
+}
+
