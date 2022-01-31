@@ -1,54 +1,72 @@
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { FormEvent, useEffect, useState } from "react";
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
-import { Link, URLSearchParamsInit, useNavigate, useParams } from "react-router-dom";
 
-import { usePaciente } from "../hooks/usePaciente";
 import { database } from "../services/firebase";
 
 import imgDelete from '../assets/img/apagar.png'
 import '../styles/modal.scss'
 
-type PacienteType = {
-    id: string;
-    email: string;
-    nome: string;
-    telefone: number;
-}
-
-
 export function PacienteEdit() {
 
-    const [nome, setNome] = useState('')
-    const [telefone, setTelefone] = useState(Number)
-    const [email, setEmail] = useState('')
-    const { pacientes } = usePaciente()
+    /***************************************************************************************************************************
+                        useEffect Funcional para encontrar Paciente usando o Find 
+    Passando o paciente no [vetor] do useEffect passou a buscar toda vez que atualiza a pagina
+    porém decidi por deixar em funcionamento a utilização da documentação própria do firebase para encontrar o paciente.
+    
+    
+    
+                                    const paciente = pacientes.find(pac => pac.id === idPaciente)
+                                    const { pacientes } = usePaciente()
+                                    
+                                    useEffect(() => {
+                                        setNome(String(paciente?.nome))
+                                        setTelefone(Number(paciente?.telefone))
+                                        setEmail(String(paciente?.email))
+                                        
+                                    }, [paciente]) 
+    
+    ******************************************************************************************************************************/
 
     const idPaciente = useParams().id
     const navigate = useNavigate()
 
 
+    const [nome, setNome] = useState('')
+    const [telefone, setTelefone] = useState(Number)
+    const [email, setEmail] = useState('')
+
+    //useEffect funcional utilizando a documentação de pegar paciente do Firebase
     useEffect(() => {
-        const paciente = pacientes.find(pac => pac.id === idPaciente)
-        setNome(String(paciente?.nome))
-        setTelefone(Number(paciente?.telefone))
-        setEmail(String(paciente?.email))
-        if (!paciente?.nome) {
-            navigate(`/Home/Pacientes`)
+        async function pegaPaciente() {
+            const docRef = doc(database, 'pacientes/' + idPaciente)
+            const docSnap = await getDoc(docRef)
+
+            if (docSnap.exists()) {
+                const paciente = docSnap.data()
+                setNome(paciente.nome)
+                setEmail(paciente.email)
+                setTelefone(paciente.telefone)
+            }
         }
+        pegaPaciente()
+
     }, [])
 
+    //Edita os dados do paciente no Firestore ao envio do formulário e retorna para a pagina de pacientes.
     async function editPaciente(event: FormEvent) {
         event.preventDefault()
 
         const docRef = doc(database, "pacientes/" + idPaciente)
         const payload = { nome, email, telefone }
 
-        await setDoc(docRef, payload)
+        await updateDoc(docRef, payload)
 
         navigate('/Home/Pacientes')
 
     }
 
+    //Deleta o paciente da pagina selecionada do banco de dados Firestore
     async function deletePaciente() {
 
         const docRef = doc(database, "pacientes/" + idPaciente)
@@ -57,11 +75,13 @@ export function PacienteEdit() {
         navigate('/Home/Pacientes')
     }
 
+    //Abre e fecha Modal de confirmação de exclusão de Paciente
     const abrirModal = () => document.getElementById('mod')?.classList.add('on')
     const fecharModal = () => document.getElementById('mod')?.classList.remove('on')
 
+
     return (
-        <div id='container-modal'>
+        <div>
             <section className="container" id='edit'>
 
                 <div className='card'>
@@ -132,7 +152,7 @@ export function PacienteEdit() {
 
             </section >
 
-        </div>
+        </div >
 
     )
 }

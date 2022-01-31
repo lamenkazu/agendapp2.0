@@ -9,7 +9,7 @@ type PacienteType = {
     telefone?: number | undefined;
 }
 
-type PacienteContextProviderProps = {
+type PacienteContextProviderrProps = {
     children: ReactNode;
 }
 
@@ -19,7 +19,7 @@ type PacienteContextType = {
 
 export const PacienteContext = createContext({} as PacienteContextType)
 
-export function PacienteContextProvider(props: PacienteContextProviderProps) {
+export function PacienteContextProvider(props: PacienteContextProviderrProps) {
 
     const [pacientes, setPacientes] = useState<PacienteType[]>([])
 
