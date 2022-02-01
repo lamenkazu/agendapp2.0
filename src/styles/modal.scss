@@ -83,14 +83,18 @@
       }
     
       #btn-cancell{
+        text-decoration: none;
           color: black;
-          padding: 1rem;
+          padding: 15px;
+          display: flex;
+          align-items: center;
           margin-right: 5rem;
+          
+          border-radius: 30px;
       }
     
       #btn-cancell:hover{
           background-color:rgb(13, 223, 223);
-          border-radius: 30px;
       }
       
       .modal footer button + button {

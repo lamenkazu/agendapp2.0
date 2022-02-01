@@ -9,6 +9,7 @@ import { Historico } from "./components/Historico";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { PacienteEdit } from "./components/PacienteEdit";
 import { PacienteContextProvider } from "./contexts/PacienteContext";
+import { ModalLogOut } from "./components/ModalLogOut";
 
 
 export function App() {
@@ -19,6 +20,8 @@ export function App() {
           <Routes>
             <Route path='/' element={<LogIn />} />
             <Route path='/Home' element={<Home />} >
+
+              <Route path='/Home/Logout' element={<ModalLogOut />} />
               <Route path='/Home/Pacientes/Cadastro' element={<AgendarPacientes />} />
 
               <Route path='/Home/Pacientes' element={<ListaPacientes />} />

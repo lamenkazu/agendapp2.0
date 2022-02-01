@@ -51,7 +51,7 @@ export function PacienteEdit() {
         }
         pegaPaciente()
 
-    }, [])
+    }, [idPaciente])
 
     //Edita os dados do paciente no Firestore ao envio do formulário e retorna para a pagina de pacientes.
     async function editPaciente(event: FormEvent) {
@@ -141,7 +141,7 @@ export function PacienteEdit() {
                         </p>
                         <footer>
 
-                            <a id='btn-cancell' onClick={fecharModal} >Cancelar</a>
+                            <Link id='btn-cancell' to='#' onClick={fecharModal} >Cancelar</Link>
                             <button className="button red" onClick={deletePaciente} type="submit" form="apagar">Excluir Paciente</button>
 
                         </footer>

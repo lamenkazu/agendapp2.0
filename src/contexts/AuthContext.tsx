@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+
+import { createContext, useState, ReactNode, useEffect } from "react";
+import { } from 'react-router-dom'
 import { auth, authGoogle, authPopup } from "../services/firebase";
 
 type User = {
@@ -14,6 +16,7 @@ type AuthContextProviderProps = {
 type AuthContextType = {
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
+    logOut: () => Promise<void>;
 
 }
 
@@ -22,6 +25,24 @@ export const AuthContext = createContext({} as AuthContextType)
 export function AuthContextProvider(props: AuthContextProviderProps) {
 
     const [user, setUser] = useState<User>()
+
+    useEffect(() => {
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                const { displayName, photoURL, uid } = user
+
+                if (!displayName || !photoURL) {
+                    throw new Error('Missing Info from Google')
+                }
+                setUser({
+                    id: uid,
+                    name: displayName,
+                    avatar: photoURL
+                })
+            }
+        })
+    }, [])
 
     async function signInWithGoogle() {
         const provider = authGoogle
@@ -40,8 +61,17 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             })
         }
     }
+
+    async function logOut() {
+        if (user) {
+            await auth.signOut()
+            setUser(undefined)
+        }
+    }
+
+
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle }}>
+        <AuthContext.Provider value={{ user, signInWithGoogle, logOut }}>
             {props.children}
         </AuthContext.Provider>
     )
