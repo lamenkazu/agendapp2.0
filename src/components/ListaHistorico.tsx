@@ -1,27 +1,27 @@
-import { Link } from "react-router-dom"
-
-import { useConsulta } from "../hooks/useConsulta"
+import { useConsulta } from "../hooks/useConsulta";
 import { usePaciente } from "../hooks/usePaciente";
 import imgEdit from '../assets/img/edit.png'
-import { tempoRestante } from "../util/tempoRestante";
+import { Link } from "react-router-dom";
 
-export function ListaConsultas() {
-
+export function ListaHistorico() {
     const { consultas } = useConsulta()
     const { pacientes } = usePaciente()
 
-    const listaConsultas = consultas.map(consulta => {
+    const listaHistorico = consultas.map(consulta => {
 
         if (new Date(String(consulta.horario)).getTime() <= Date.now()) {
-            //Do nothing
-        } else {
             const paciente = pacientes.find(pac => pac.id === consulta.idPaciente)
 
+            const dayName = new Array("Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado")
+            const monName = new Array("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+            const time = new Date(String(consulta.horario))
+            const data = `${time.getDate()} de ${monName[time.getMonth()]} de ${time.getFullYear()} - ${dayName[time.getDay()]}`
+
             return (
-                <div key={consulta.id} className='item'>
+                <div key={consulta.id} className="item">
 
                     <div className="status">
-                        Agendado
+                        Realizado
                     </div>
 
                     <div id='showTitle'>
@@ -49,9 +49,9 @@ export function ListaConsultas() {
                     </div>
 
                     <div className="prazo column">
-                        <span>Prazo:</span>
+                        <span>Data:</span>
                         <p>
-                            {tempoRestante(consulta.horario)}
+                            {data}
                         </p>
                     </div>
 
@@ -72,17 +72,16 @@ export function ListaConsultas() {
                         <small className='idCliente' >{consulta.id}</small>
                     </div>
 
-
-
                 </div>
             )
         }
     })
+
     return (
         <div className="container">
-            <div className='card'>
-                <h2>Lista de Consultas</h2>
-                {listaConsultas}
+            <div className="card">
+                <h2>Historico de Consultas</h2>
+                {listaHistorico}
             </div>
         </div>
     )

@@ -4,6 +4,7 @@
     width: min(90vw, 800);
     text-align: center;
     margin-left:20%;
+    max-width: fit-content;
     
     
 
@@ -51,20 +52,20 @@
 
             .itensForm{
                 display: flex;
-                margin-left: 10%;
-                justify-content: space-around;
-                margin-right: 15%;
+                justify-content: end;
+                margin-right: 13%;
             }
             
                 
             input{
                 margin-bottom: 10px;
+                margin-left: 3px;
                 height: 1.5rem;
                 border-radius: 8px;
                 padding: 0 16px;
                 background-color: antiquewhite;
                 border: 1px solid #2c3450;
-                width: 222px;
+                width: 230px;
             }
                         
         }
@@ -141,7 +142,7 @@
         .prazo, .valor{
             margin-right: 100%;
             p{
-                width: 40vh;
+                width: max-content;
                 padding-left: 15vh;
                 color: #ffe7b6;
                 margin-bottom: 10px;
@@ -190,6 +191,47 @@
                 border-radius: 100%;
             }
         }
+       
+    }
+
+    .toggle[type='checkbox']{
+        margin-top: 2rem;
+        margin-right: 3rem;
+        appearance: none;
+        background: antiquewhite;
+        width: 2rem;
+        height: 1rem;
+        border-radius: 50px;
+        box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.671);
+        cursor: pointer;
+        transition: ease 0.3s;
+        position: relative;
+        &:before{
+            content:'';
+            width: 1rem;
+            height: 1rem;
+            background-color: #753c25e8;
+            border-radius: 100%;
+            position: absolute;
+            box-shadow: 1px 0.5px 3px 1px rgba(0, 0, 0, 0.445);
+            transform: scale(1.03);
+            top: 0;
+            left: 0;
+            transition: ease 0.3s;
+            
+        }
+    }
+    input:checked[type='checkbox']{
+        background-color: #3Decb1;
+        
+
+        &:before{
+            left: 50%;
+        }
+    }
+    .off{
+        display: none;
+        visibility: hidden;
     }
 }
 

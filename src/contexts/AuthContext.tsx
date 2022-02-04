@@ -26,7 +26,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
     const [user, setUser] = useState<User>()
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         auth.onAuthStateChanged(user => {
             if (user) {
@@ -42,7 +42,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                 })
             }
         })
-    }, [])
+    }, []) */
 
     async function signInWithGoogle() {
         const provider = authGoogle

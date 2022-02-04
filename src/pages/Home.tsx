@@ -9,7 +9,7 @@ import { sign } from 'crypto'
 
 export function Home() {
 
-    const { user, signInWithGoogle } = useAuth()
+    /*const { user, signInWithGoogle } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -24,14 +24,14 @@ export function Home() {
                 navigate('/Home')
             }
         })
-    }, [])
+    }, []) 
 
     useEffect(() => {
         if (!user) {
 
             navigate('/')
         }
-    }, [user])
+    }, [user])*/
 
     return (
         <div id='page-home'>

@@ -1,11 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { FormEvent, useEffect, useState } from "react";
 
 import { database } from "../services/firebase";
 
 import imgDelete from '../assets/img/apagar.png'
 import '../styles/modal.scss'
+import { deleta, edita } from "../util/editUtils";
 
 export function PacienteEdit() {
 
@@ -16,8 +17,8 @@ export function PacienteEdit() {
     
     
     
-                                    const paciente = pacientes.find(pac => pac.id === idPaciente)
                                     const { pacientes } = usePaciente()
+                                    const paciente = pacientes.find(pac => pac.id === idPaciente)
                                     
                                     useEffect(() => {
                                         setNome(String(paciente?.nome))
@@ -57,22 +58,18 @@ export function PacienteEdit() {
     async function editPaciente(event: FormEvent) {
         event.preventDefault()
 
-        const docRef = doc(database, "pacientes/" + idPaciente)
-        const payload = { nome, email, telefone }
+        await edita('pacientes/', idPaciente, { nome, email, telefone }) //Util
 
-        await updateDoc(docRef, payload)
-
-        navigate('/Home/Pacientes')
+        navigate(-1)
 
     }
 
     //Deleta o paciente da pagina selecionada do banco de dados Firestore
     async function deletePaciente() {
 
-        const docRef = doc(database, "pacientes/" + idPaciente)
-        await deleteDoc(docRef)
+        await deleta('pacientes/', idPaciente) //Util
 
-        navigate('/Home/Pacientes')
+        navigate(-1)
     }
 
     //Abre e fecha Modal de confirmação de exclusão de Paciente

@@ -1,21 +1,18 @@
-import { Link } from "react-router-dom"
-
+import { Link, useParams } from "react-router-dom"
 import { useConsulta } from "../hooks/useConsulta"
-import { usePaciente } from "../hooks/usePaciente";
+import { usePaciente } from "../hooks/usePaciente"
 import imgEdit from '../assets/img/edit.png'
-import { tempoRestante } from "../util/tempoRestante";
+import { tempoRestante } from "../util/tempoRestante"
 
-export function ListaConsultas() {
+export function ConsultasPessoais() {
 
     const { consultas } = useConsulta()
     const { pacientes } = usePaciente()
+    const idPaciente = useParams().id
 
-    const listaConsultas = consultas.map(consulta => {
-
-        if (new Date(String(consulta.horario)).getTime() <= Date.now()) {
-            //Do nothing
-        } else {
-            const paciente = pacientes.find(pac => pac.id === consulta.idPaciente)
+    const listadeConsultas = consultas.map(consulta => {
+        if (consulta.idPaciente === idPaciente) {
+            const paciente = pacientes.find(pac => pac.id === idPaciente)
 
             return (
                 <div key={consulta.id} className='item'>
@@ -78,12 +75,16 @@ export function ListaConsultas() {
             )
         }
     })
+
     return (
-        <div className="container">
-            <div className='card'>
-                <h2>Lista de Consultas</h2>
-                {listaConsultas}
+        <section className="container">
+            <div className="card">
+                <h2>Consultas Agendadas</h2>
+
+
+                {listadeConsultas}
+
             </div>
-        </div>
+        </section>
     )
 }
